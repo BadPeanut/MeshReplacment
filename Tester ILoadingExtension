@@ -1,0 +1,57 @@
+using UnityEngine;
+using ICities;
+
+namespace ReplaceRailMesh
+{
+    public class RailMeshReplacerLoading : LoadingExtensionBase
+    {
+        public override void OnLevelLoaded(LoadMode mode)
+        {
+            // Index Networks
+            NetInfo netPrefab = PrefabCollection<NetInfo>.GetLoaded(index);
+            
+            // cancel if lanes array is null (networks without lanes)
+            if (netPrefab.m_lanes == null) return;
+                            
+            // iterate through all networks to find networks containing Train vehicleTypes on lanes
+            foreach (NetInfo)
+            {
+                
+                if (lane?.m_vehicleType.contains("Train") )
+
+                // iterate through all m_segments to find any segments flagged as follows:
+                foreach (NetInfo.Segment segment in netPrefab.m_segments)
+                {
+                    if (segment == null) continue;
+
+                    // if the flag is set as specified, replace it as specified
+                    if (segment.m_backwardForbidden != (Created))
+                    {
+                        segment.m_backwardForbidden = (None);
+                    }
+                    if (segment.m_backwardForbidden = (Deleted))
+                    {
+                        segment.m_backwardForbidden = (Created);
+                    }
+                }
+                // iterate through all m_nodes to find any node flagged as follows:
+                foreach (NetInfo.Node node in netPrefab.m_nodes)
+                {
+                    if (node == null) continue;
+
+                    // if the flag is set as specified, replace it as specified
+                    if (node.m_flagForbidden != (Created))
+                    {
+                        node.m_flagForbidden = (None);
+                    }
+                    if (node.m_flagForbidden = (Deleted))
+                    {
+                        node.m_flagForbidden = (Created);
+                    }
+                }
+            }
+
+            Debug.Log("RTR: Replacement successful!");
+        }
+    }
+}
